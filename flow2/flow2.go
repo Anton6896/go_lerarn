@@ -28,10 +28,10 @@ func main() {
 	fmt.Println("after change: " + text)
 
 	number := 5
-	var p *int // create pointer 
+	var p *int // empty pointer 
 	fmt.Println(p)
-	p = &number
-	fmt.Println(p)  // assign place to pointer 
+	p = &number  // assign address to pointer 
+	fmt.Println(p) 
 
 	*p = 11 // dereference update number 
 	fmt.Println(number)
