@@ -11,10 +11,34 @@ import (
 */
 
 func main() {
-	base1()
+	// base1()
 
-	newData()
-	newData2()
+	// newData()
+	// newData2()
+
+	maps_main()
+}
+
+func maps_main() {
+	users := map[string]int{ // dict init in place
+		"user1": 11,
+		"user2": 12,
+	}
+
+	objects := make(map[string]int) // init empty map 
+	objects["obj1"] = 11
+
+	fmt.Println(users)
+
+	users["super"] = 33    // add
+	delete(users, "user2") // remove
+
+	fmt.Println(users)
+
+	for k, v := range users { // iter
+		fmt.Println(k, v)
+	}
+
 }
 
 func base1() {
@@ -48,12 +72,11 @@ var new1, new2 int = 1, 1
 
 func newData() {
 	fmt.Println("new data ____________")
-	new1 := 55  // init locally 
-	new2 = 77 // assign other data to global 
+	new1 := 55 // init locally
+	new2 = 77  // assign other data to global
 	fmt.Println(new1, new2)
 }
 
 func newData2() {
 	fmt.Println(new1, new2)
 }
-

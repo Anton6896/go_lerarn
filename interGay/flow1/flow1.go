@@ -75,7 +75,7 @@ func dayPrediction(day string) string {
 	}
 }
 
-func getMin(num ...int) int {
+func getMin(num ...int) int { /// *args -> num is [1,2,3...n]
 	if len(num) < 1 {
 		return 0
 	}
