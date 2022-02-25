@@ -22,10 +22,10 @@ func panic_func() {
 	arr1 := []int{1, 2, 3}
 	fmt.Println(arr1)
 
-	fmt.Println(arr1[3])  // <- error panic 
+	fmt.Println(arr1[3])  // ? <- error panic 
 }
 
-func panicHandler(){
+func panicHandler(){ // * exception handler 
 	if r := recover(); r != nil {
 		fmt.Println(r)
 	}	
