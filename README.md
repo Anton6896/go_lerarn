@@ -1,6 +1,7 @@
 # go_lerarn
 
-
+!! set your go path to your prefer directory !!
+/Users/ant/myData/anton-code/go_lerarn
 
 ### youtube lessons
   * free code camp go [link](https://www.youtube.com/watch?v=YS4e4q9oBaU&ab_channel=freeCodeCamp.org)
