@@ -5,13 +5,18 @@ import (
 	"strconv"
 )
 
-// declare var as block at top level
-var (
-	fname string = "block declaration"
-	fage  int    = 45
-)
+func basics() {
+	// declare var as block at top level
+	var (
+		fname string = "block declaration"
+		fage  int    = 45
+	)
+	const (
+		constA = iota // will use this pattern for other const vars
+		constB
+		constC
+	)
 
-func main() {
 	fmt.Printf("%v %v \n", fname, fage)
 
 	var age int
@@ -32,6 +37,30 @@ func main() {
 	text := "this is the string"
 	bText := []byte(text)
 	fmt.Printf("this is the string : %v : %T\n", bText, bText) //utf8
+
+	fmt.Printf("aiota : %v ", constA)
+	fmt.Printf("aiota : %v ", constB)
+	fmt.Printf("aiota : %v \n", constC)
 }
 
-// go mod init
+func great1() {
+	const (
+		positionA = iota // can be used as example as combined keys
+		positionB
+		positionC
+
+		sideA
+		sideB
+		sideC
+	)
+
+	roleA := positionA | sideA | sideB
+	// roleB :=positionB | sideB | sideC
+
+	fmt.Printf("inpositionA %v \n", positionA&roleA == positionA)
+}
+
+func main() {
+	great1()
+
+}
