@@ -60,6 +60,7 @@ func great1() {
 	fmt.Printf("inpositionA %v \n", positionA&roleA == positionA)
 }
 
+// continue at 1.47
 func main() {
 	great1()
 
