@@ -2,9 +2,29 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"reflect"
+	"strconv"
 )
+
+// continue at 2.17
+func main() {
+	controlFlow()
+}
+
+func controlFlow() {
+	// try catch ...
+
+	// defer working on LIFO array
+	defer println("1")
+	defer println("2") // will trigger when controlFlow ends
+	println("3")
+
+	// Panic is an state the  golang cant handle this issue
+	a, b := 1, 0
+	ans := a / b
+	println(ans)
+
+}
 
 func basics() {
 	// declare var as block at top level
@@ -146,7 +166,7 @@ func myStructs() {
 	}
 	fmt.Printf("newCar %v", newCar)
 
-	// composition relationship 
+	// composition relationship
 	fmt.Println("composition ----------- ")
 	type car struct {
 		mark  string
@@ -159,13 +179,13 @@ func myStructs() {
 	}
 
 	car1 := honda{
-		car: car{mark: "honda", speed: 100},
+		car:  car{mark: "honda", speed: 100},
 		name: "civic",
 	}
 
 	fmt.Println(car1)
 
-	// validation | reflection 
+	// validation | reflection
 	type human struct {
 		name string `required max:"100"`
 	}
@@ -175,7 +195,100 @@ func myStructs() {
 	println(field.Tag)
 }
 
-// continue at 2.17
-func main() {
-	myStructs()
+func getTrue() bool {
+	return true
+}
+
+func ifAndSwitch() {
+	num1 := 4
+	if num1 > 10 || getTrue() {
+		println("inside the if statement")
+	} else if getTrue() {
+		println("the else in work")
+	}
+
+	switch num1 {
+	case 1, 3:
+		println("some num")
+	case 4:
+		println("this is 4")
+	default:
+		println("this is default")
+	}
+
+	switch {
+	case num1 > 3:
+		println("its big")
+	default:
+		println("i am default")
+	}
+
+	var i interface{} = "1" // interface can be any type of (int, str, ...)
+	switch i.(type) {
+	case int:
+		println("int")
+		break // its working ok
+		println("break still working")
+	case bool:
+		println("bool")
+	case [2]int:
+		println("array with 2 ints")
+	default:
+		println("some other")
+	}
+}
+
+func looping() {
+	for i := 0; i < 4; i++ {
+		print("num: %v, ", i)
+		if i == 3 {
+			println()
+		}
+	}
+	println("other line")
+
+	i := 0
+	for i < 3 {
+		i++
+		println("some job")
+	}
+
+	for {
+		i++
+		if i > 5 {
+			break
+		}
+		if i == 4 {
+			continue
+		}
+		println("some while loop")
+	}
+
+	// loop labeling (great new feature for me)
+
+Loop:
+	for i := 0; i < 4; i++ {
+		println("mainloop")
+		for j := 0; j < 4; j++ {
+			println("inner loop")
+			if j == 2 {
+				break Loop
+			}
+		}
+	}
+
+	myArr := []int{1, 2, 3, 4}
+	for k, v := range myArr {
+		println(k, v)
+	}
+
+	myMap := map[string]int{
+		"val1": 1,
+		"val2": 2,
+	} // have no order !
+
+	for _, v := range myMap {
+		println(v)
+	}
+
 }
