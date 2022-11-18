@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"reflect"
 )
 
 func basics() {
@@ -87,11 +88,94 @@ func arrays() {
 	arr3 = append(arr3, arr4...)
 	fmt.Println(arr3)
 
+}
 
+func myMaps() {
+	myMap := make(map[string]int)
+	myMap = map[string]int{
+		"val1": 1,
+		"val2": 2,
+	}
+	myMap["val3"] = 3
+	delete(myMap, "val2")
+	fmt.Println(myMap)
+
+	// check if in the map
+	inside, ok := myMap["val2"]
+	fmt.Printf("is it inside %v, %v", inside, ok)
+}
+
+func myStructs() {
+	type patient struct {
+		name string
+		age  int
+	}
+
+	type Doctor struct {
+		name       string
+		profession string
+		patients   []patient
+	}
+
+	docA := Doctor{
+		name:       "docA",
+		profession: "professionA",
+		patients: []patient{
+			{
+				name: "patient1",
+				age:  12,
+			},
+			{
+				name: "patient2",
+				age:  14,
+			},
+		},
+	}
+
+	fmt.Println(docA.patients[0].name)
+	fmt.Println(docA.patients[1].name)
+
+	newCar := struct {
+		make    string
+		model   string
+		mileage int
+	}{
+		make:    "Ford",
+		model:   "Taurus",
+		mileage: 200000,
+	}
+	fmt.Printf("newCar %v", newCar)
+
+	// composition relationship 
+	fmt.Println("composition ----------- ")
+	type car struct {
+		mark  string
+		speed int
+	}
+
+	type honda struct {
+		car
+		name string
+	}
+
+	car1 := honda{
+		car: car{mark: "honda", speed: 100},
+		name: "civic",
+	}
+
+	fmt.Println(car1)
+
+	// validation | reflection 
+	type human struct {
+		name string `required max:"100"`
+	}
+
+	h := reflect.TypeOf(human{})
+	field, _ := h.FieldByName("name")
+	println(field.Tag)
 }
 
 // continue at 2.17
 func main() {
-	arrays()
-
+	myStructs()
 }
