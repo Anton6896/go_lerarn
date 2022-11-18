@@ -6,9 +6,38 @@ import (
 	"strconv"
 )
 
-// continue at 2.17
+// continue at 4.22
 func main() {
-	controlFlow()
+	functionsCheck()
+}
+
+func functionsCheck() {
+	// arr1 := []int{1, 2, 3, 4}
+	checkAll(1, 2, 3, 4)
+}
+
+func checkAll(values ...int) {
+	// same as *args
+	fmt.Println(values)
+}
+
+func pointers() {
+	var a int = 45
+	var b *int = &a
+	println(b)
+	println(*b)
+	a = 1
+	println(*b) // point to same location as var a
+	*b = 4
+	println(a)
+
+	type myFoo struct {
+		foo string
+	}
+	var mf *myFoo = new(myFoo)
+	(*mf).foo = "bar" // first dereference mf , then assign value to
+	println(mf.foo)   // syntactic sugar , golang will diref by it self
+
 }
 
 func controlFlow() {
