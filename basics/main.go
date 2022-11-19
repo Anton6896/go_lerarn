@@ -13,12 +13,38 @@ func main() {
 
 func functionsCheck() {
 	// arr1 := []int{1, 2, 3, 4}
-	checkAll(1, 2, 3, 4)
+	val := checkAll("foo", 1, 2, 3, 4)
+	fmt.Println("dereference val :", *val)
+
+	d, err := devider(1, 0)
+	if err != nil {
+		println("have some error")
+	}
+	fmt.Println("result ", d)
+
+	f := func () {
+		fmt.Println("i am inside function")
+	}
+
+	f()
 }
 
-func checkAll(values ...int) {
+func devider(a, b int) (int, error) {
+	if b == 0 {
+		return 0, fmt.Errorf("zero devider")
+	}
+
+	return a / b, nil
+}
+
+func checkAll(foo string, values ...int) *int {
 	// same as *args
-	fmt.Println(values)
+	fmt.Printf("str: %v, args : %v\n", foo, values)
+	/*
+		in goleng we can return this location in memory it will be saved after function is closed too !
+	*/
+	res := 0
+	return &res
 }
 
 func pointers() {
