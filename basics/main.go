@@ -8,9 +8,55 @@ import (
 
 // continue at 4.22
 func main() {
-	functionsCheck()
+	var w writer = consoleWriter{}
+	a, b := w.write([]byte("new string"))
+	fmt.Println("amount of chars ", a)
+	fmt.Println("is error ", b)
+
+	fw := fansyWriter{}
+	fw.write([]byte("amazing"))
 }
 
+// interfaces ===========================================
+type bWriter interface {
+	wright([]byte) (int, error)
+}
+
+type bCloser interface {
+	close() error
+}
+
+type WriterCloser interface { // integrate 2 interfaces together
+	bWriter
+	bCloser
+}
+
+
+
+
+// ---
+type writer interface {
+	write([]byte) (int, error)
+}
+
+type consoleWriter struct{}
+type fansyWriter struct{}
+
+func (cw consoleWriter) write(data []byte) (int, error) {
+	/*
+		this function is working as a glue !
+		between struct and interface
+	*/
+	n, err := fmt.Println(string(data))
+	return n, err
+}
+
+func (fw fansyWriter) write(data []byte) (int, error) {
+	n, err := fmt.Printf("**** %v *****", string(data))
+	return n, err
+}
+
+// functions ===========================================
 func functionsCheck() {
 	// arr1 := []int{1, 2, 3, 4}
 	val := checkAll("foo", 1, 2, 3, 4)
@@ -22,7 +68,7 @@ func functionsCheck() {
 	}
 	fmt.Println("result ", d)
 
-	f := func () {
+	f := func() {
 		fmt.Println("i am inside function")
 	}
 
