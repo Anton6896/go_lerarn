@@ -1,10 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
 	"strconv"
 )
+
+func init() {
+	fmt.Println("i am always first")
+}
 
 // continue at 4.22
 func main() {
@@ -15,6 +20,12 @@ func main() {
 
 	fw := fansyWriter{}
 	fw.write([]byte("amazing"))
+	fmt.Println()
+
+	bwc := newBWC() // chunks for 8 character in line
+	bwc.wright([]byte("this is some string here amazing"))
+	bwc.close()
+
 }
 
 // interfaces ===========================================
@@ -31,8 +42,46 @@ type WriterCloser interface { // integrate 2 interfaces together
 	bCloser
 }
 
+type bufferedWriterCloser struct {
+	buffer *bytes.Buffer
+}
 
+func (bwc *bufferedWriterCloser) wright(data []byte) (int, error) {
+	n, err := bwc.buffer.Write(data)
+	if err != nil {
+		return 0, err
+	}
 
+	acc := make([]byte, 8)
+	for bwc.buffer.Len() > 8 { // while
+		_, err := bwc.buffer.Read(acc) // read 8 bytes from buffer
+		if err != nil {
+			return 0, err
+		}
+		_, err = fmt.Println(string(acc))
+		if err != nil {
+			return 0, err
+		}
+	}
+	return n, nil
+}
+
+func (bwc *bufferedWriterCloser) close() error { // print all that left in buffer
+	for bwc.buffer.Len() > 0 { // grub all data from buffer, that left there
+		data := bwc.buffer.Next(8)
+		_, err := fmt.Println(string(data))
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func newBWC() *bufferedWriterCloser {
+	return &bufferedWriterCloser{ // return address of this struct
+		buffer: bytes.NewBuffer([]byte{}), // declare new buffer 
+	}
+}
 
 // ---
 type writer interface {
