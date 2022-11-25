@@ -11,6 +11,7 @@ var m = sync.RWMutex{}
 // var wg = sync.WaitGroup{} //get it from mr.go
 
 func IamSynced() {
+	// runtime.GOMAXPROCS(20) // unsafe working with golang ! can bring memory overhanded 
 	for i := 0; i < 10; i++ {
 		wg.Add(2)
 
@@ -21,7 +22,6 @@ func IamSynced() {
 		go writeTo()
 	}
 	wg.Wait() // wight for all 
-
 }
 
 func readIt() {
@@ -33,7 +33,6 @@ func readIt() {
 }
 
 func writeTo() {
-	
 	counter++
 	m.Unlock()
 	wg.Done()

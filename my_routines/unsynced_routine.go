@@ -16,8 +16,8 @@ func AntRoutins() { // will use ths func as main in this package
 	wg.Add(1) // add what to wait there
 	go sayHi()
 
-	// wg.Add(1)
-	// doRace()
+	wg.Add(1)
+	doRace()
 	wg.Wait()
 
 	IamSynced()
@@ -28,6 +28,7 @@ func sayHi() {
 	wg.Done() // remove the 1 from weight
 }
 
+// to see all race conditions and mem liaks ->  go run -race main.go  
 func doRace() {
 	// see the race contrition
 	a := "text1"
