@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/Anton6896/go_lerarn/basics"
+
+	myroutines "github.com/Anton6896/go_lerarn/my_routines"
+	// "github.com/Anton6896/go_lerarn/basics"
 )
 
 func init() {
-	fmt.Println("i am always first")
+	fmt.Println("**great to learn goleng**")
 }
 
 func main() {
-	basics.BasicWorker()
+	// basics.BasicWorker()
+	myroutines.AntRoutins()
 }
