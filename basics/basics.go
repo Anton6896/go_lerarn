@@ -1,4 +1,4 @@
-package main
+package basics
 
 import (
 	"bytes"
@@ -7,12 +7,7 @@ import (
 	"strconv"
 )
 
-func init() {
-	fmt.Println("i am always first")
-}
-
-// continue at 4.22
-func main() {
+func BasicWorker() {
 	var w writer = consoleWriter{}
 	a, b := w.write([]byte("new string"))
 	fmt.Println("amount of chars ", a)
@@ -25,7 +20,6 @@ func main() {
 	bwc := newBWC() // chunks for 8 character in line
 	bwc.wright([]byte("this is some string here amazing"))
 	bwc.close()
-
 }
 
 // interfaces ===========================================
@@ -79,7 +73,7 @@ func (bwc *bufferedWriterCloser) close() error { // print all that left in buffe
 
 func newBWC() *bufferedWriterCloser {
 	return &bufferedWriterCloser{ // return address of this struct
-		buffer: bytes.NewBuffer([]byte{}), // declare new buffer 
+		buffer: bytes.NewBuffer([]byte{}), // declare new buffer
 	}
 }
 
