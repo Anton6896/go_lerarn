@@ -5,12 +5,12 @@ import (
 	"sync"
 )
 
-/* 
-this is an unsynced routine that running who is faster 
+/*
+this is an unsynced routine that running who is faster
 */
 var wg = sync.WaitGroup{}
 
-func AntRoutins() {
+func AntRoutins() { // will use ths func as main in this package
 	fmt.Println("my routine package")
 
 	wg.Add(1) // add what to wait there
@@ -20,7 +20,7 @@ func AntRoutins() {
 	// doRace()
 	wg.Wait()
 
-	roo()
+	IamSynced()
 }
 
 func sayHi() {
