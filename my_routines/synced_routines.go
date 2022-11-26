@@ -25,7 +25,6 @@ func IamSynced() {
 }
 
 func readIt() {
-	
 	fmt.Printf("number : %v\n", counter)
 	m.RUnlock()
 	wg.Done()

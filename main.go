@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 
-	myroutines "github.com/Anton6896/go_lerarn/my_routines"
 	// "github.com/Anton6896/go_lerarn/basics"
+	// myroutines "github.com/Anton6896/go_lerarn/my_routines"
+	"github.com/Anton6896/go_lerarn/mychannels"
 )
 
 func init() {
@@ -13,5 +14,6 @@ func init() {
 
 func main() {
 	// basics.BasicWorker()
-	myroutines.AntRoutins()
+	// myroutines.AntRoutins()
+	mychannels.MyChannel()
 }
